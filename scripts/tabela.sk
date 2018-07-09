@@ -1,0 +1,61 @@
+on click on sign:
+    line 1 of clicked block is "&4KODEnis"
+    line 2 of clicked block is "&fTikla"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+    message "&aR�tbe: &4&lKurucu"
+    message "&aUstunluk: &5+ + + + + &c(&n&4En ust&f &cduzey)"
+    message "&aAd: &c[REDACTED]"
+    message "&aMinecraft Ad: &cKODEnis"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+
+on click on sign:
+    line 1 of clicked block is "&cNinjaax_"
+    line 2 of clicked block is "&fTikla"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+    message "&aR�tbe: &cAdmin"
+    message "&aUstunluk: &5+ + + +"
+    message "&aAd: &c[REDACTED]"
+    message "&aMinecraft Ad: &cNinjaax_"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+	
+on click on sign:
+    line 1 of clicked block is "&custunege"
+    line 2 of clicked block is "&fTikla"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+    message "&aR�tbe: &cAdmin"
+    message "&aUstunluk: &5+ + + +"
+    message "&aAd: &c[REDACTED]"
+    message "&aMinecraft Ad: &custunege"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+	
+on click on sign:
+    line 1 of clicked block is "&dAsdas"
+    line 2 of clicked block is "&fTikla"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+    message "&aR�tbe: &dPluginer"
+    message "&aUstunluk: &5+ +"
+    message "&aAd: &c[REDACTED]"
+    message "&aMinecraft Ad: &cxXxIAsdasIxXx_K"
+    message "&4&l&n&oNOT:&f &5Bu okuduklarini o yazdi :D"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+
+on click on sign:
+    line 1 of clicked block is "&9Samet_TR"
+    line 2 of clicked block is "&fTikla"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+    message "&aR�tbe: &9Moderator"
+    message "&aUstunluk: &5+ +"
+    message "&aAd: &c[REDACTED]"
+    message "&aMinecraft Ad: &cSamet_TR"
+    message "&6&m-----------&f &b[Yetkili Bilgi] &6&m------------"
+
+on click on sign:
+    line 1 of clicked block is "&b&lYetkililer"
+    line 2 of clicked block is "&fTikla"
+    message "&6&m-----------&f &b[Yetkililer] &6&m------------"
+    message "&4&lKODEnis"
+    message "&cNinjaax_"
+    message "&custunege"
+    message "&dxXxIAsdasIxXx_K"
+    message "&9Samet_TR"
+    message "&6&m-----------&f &b[Yetkililer] &6&m------------"
