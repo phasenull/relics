@@ -1,0 +1,57 @@
+command /ucak:
+	trigger:
+		execute player command "/v on"
+		loop 9999 times:
+			if {play.%player%} is true:
+				execute player command "/summon ArmorStand ~1 ~-1.2 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~0.5 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~0 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-0.5 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-1 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-0 ~-1.1 ~0.3 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-0.3 ~-1.1 ~0.6 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-0.6 ~-1.1 ~0.9 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-0.6 ~-1.1 ~0.6 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~ ~-0.6 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:ice,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-2 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-1.6 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-0.6 ~-0.6 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:ice,Count:1,Damage:14}]}"
+
+				wait 0.01 seconds
+				execute player command "/killall ArmorStand"
+				wait 0.05 seconds
+				execute player command "/sohbetimitemizle"
+				execute player command "/ucakk"
+			else if {stop.%player%} is true:
+				cancel event
+				send "&6Ucus &ckapali"
+
+command /ucakkapa:
+	trigger:
+		set {stop.%player%} to true
+		delete {play.%player%}
+		send "&6Ucus &ckapandi"
+		execute player command "/v off"
+		execute player command "/summon ArmorStand ~1 ~-1.2 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~0.5 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~0 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-0.5 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-1 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-0 ~-1.1 ~0.3 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-0.3 ~-1.1 ~0.6 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-0.6 ~-1.1 ~0.9 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-0.6 ~-1.1 ~0.6 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~ ~-0.6 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:ice,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-2 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+		execute player command "/summon ArmorStand ~-1.6 ~-1.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+command /ucakac:
+	trigger:
+		set {play.%player%} to true
+		delete {stop.%player%}
+		send "&6Ucus &6acildi"
+command /ucakrl:
+	trigger:
+		execute player command "sk reload ucak"
+		execute player command "ucakkapa"
+		execute player command "ucakac"
+		execute player command "ucak"
