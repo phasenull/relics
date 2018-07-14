@@ -1,0 +1,42 @@
+command /asdasd:
+	trigger:
+
+
+
+
+
+
+
+
+
+
+
+chance of 1%:
+wait 1 second
+execute console command "/tp %player% 0 0 0 !"
+message "&c %player% &6Aya giderken &cuyduya carpti ve dusuyor !" to all players
+message "&cUyduya carptin ! &4&l&oDUSUYORSUN !" to player
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+wait 0.5 second
+execute console command "/title %player% title !"
+execute console command "/kill %player%"
+chance of 99%:
+message "&cBasarili bir sekilde indin." to player
