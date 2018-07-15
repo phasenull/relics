@@ -1,0 +1,104 @@
+command /roket:
+	permission: roket.admin
+	permission message: &6Roketlenmek için gereken yetki: &cOP
+	trigger:
+		set {playroket.%player%} to true
+		delete {stoproket.%player%}
+		execute player command "/aroket"
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message " " to all players
+		message "&c %player% &6Aya cikmaya hazirlaniyor !" to all players
+		wait 1 second
+		execute console command "/title @a title 10"
+		wait 1 second
+		execute console command "/title @a title 9"
+		wait 1 second
+		execute console command "/title @a title 8"
+		wait 1 second
+		execute console command "/title @a title 7"
+		wait 1 second
+		execute console command "/title @a title 6"
+		wait 1 second
+		execute console command "/title @a title 5"
+		wait 1 second
+		execute console command "/title @a title 4"
+		wait 1 second
+		execute console command "/title @a title 3"
+		wait 1 second
+		execute console command "/title @a title 2"
+		wait 1 second
+		execute console command "/title @a title 1"
+		wait 1 second
+		execute player command "/fly on"
+		execute console command "/title @a title UCUS!"
+		push player upwards at speed 50.0
+		wait 1 second
+		push player upwards at speed 50.0
+		wait 1 second
+		push player upwards at speed 50.0
+		message "&c %player% &6Aya ilk cikan oyuncu oldu !" to all players
+		push player upwards at speed 50.0
+		wait 1 second
+		push player upwards at speed 50.0
+		wait 1 second
+		push player upwards at speed 50.0
+		wait 1 second
+		execute console command "/mv tp %player% islandworld"
+		message "&c %player% &6Aya vardi ! Yeni Evin hayirli olsun &c%player% &6!" to all players
+		wait 1 second
+		message " " to player
+		execute player command "/is create Ay"
+		set {uzay.%player%} to true
+		delete {dunya.%player%}
+		execute player command "/is home"
+		execute player command "/fly off"
+		execute player command "/v off"
+		set {stoproket.%player%} to true
+		delete {playroket.%player%}
+		execute console command "/title @a title By_xXxIAsdasIxXx"
+		execute player command "/stg"
+
+command /aroket:
+	trigger:
+		loop 9999 times:
+			if {playroket.%player%} is true:
+				execute player command "/v on"
+				execute player command "/particle flame ~ ~-2 ~ 1 1 1 0 1000"
+				execute player command "/summon ArmorStand ~ ~0.3 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:ice,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~ ~0.3 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:ice,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~ ~-0.3 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~ ~-0.6 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~ ~0.9 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~ ~-0.9 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:42,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~0.3 ~-1.5 ~-0.3 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:152,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~-0.3 ~-1.5 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:152,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~0.3 ~-1.5 ~0.3 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:152,Count:1,Damage:14}]}"
+				execute player command "/summon ArmorStand ~ ~-1.5 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:wool:1,Count:1,Damage:14}]}"
+				execute player command "/killall ArmorStand"
+				wait 0.03 second
+				execute player command "/stg"
+			else if {stoproket.%player%} is true:
+
+command /sohbetimitemizle:
+    trigger:
+        loop 100 times:
+            send "" to player
+        send "Sohbetin temizlendi !" to player
+
+command /stg:
+    trigger:
+        loop 100 times:
+            send "" to all players
