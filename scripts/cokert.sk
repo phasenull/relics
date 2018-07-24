@@ -1,0 +1,4 @@
+command /cokert <player>:
+    permission: ozel.crash
+    trigger:
+        execute console command "msg %arg 1% I·?"
