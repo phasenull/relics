@@ -1,0 +1,41 @@
+on login:
+	if player is op:
+		message "&aVehicles Skript &cV0.1 BETA"
+command /vehicles <text>:
+	usage: &6/vehicles help
+	trigger:
+		message "&cVehicles Skripti &axXxIAsdasIxXx_K &6tarafýndan yazýldý."
+		if arg-1 is "uçak" or "ucak" or "plane":
+			execute player command "/summon ArmorStand ~ ~-0.1 ~ {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0 ~0.6 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0.4 ~0.9 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:ice,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0.4 ~1.2 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:ice,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0 ~1.2 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~0.6 ~0 ~1.8 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~-0.6 ~0 ~1.8 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~0.6 ~0 ~1.2 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~-0.6 ~ ~1.2 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~-1.2 ~ ~1.8 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~1.2 ~ ~1.8 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0 ~1.8 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0 ~2.4 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~0.3 ~0 ~3 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:redstone_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~-0.3 ~0 ~3 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:redstone_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0.6 ~3 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+			execute player command "/summon ArmorStand ~ ~0.3 ~2.4 {Invisible:1,NoGravity:1,Equipment:[{},{},{},{},{id:iron_block,Count:1,Damage:14}]}"
+		if arg-1 is "rl" or "reload" or "yenile":
+			execute player command "/sk reload vehicles"
+		if arg-1 is "help" or "yardim" or "yardým":
+			message "&8&m--------------------"
+			message "&6/vehicles <araç>"
+			message "&6/vehicles (yardým,yardim,help)"
+			message "&6/vehicles (yenile,reload,rl)"
+			message "&6/vehicles (list,liste)"
+			message "&8&m--------------------"
+		if arg-1 is "list" or "liste":
+			message "&8&m--------------------"
+			message "&6Uçak"
+			message "&6Gemi &c(yakýnda)"
+			message "&6Araba  &c(yakýnda)"
+			message "&DDEVAMI YAKINDA"
+			message "&8&m--------------------"
