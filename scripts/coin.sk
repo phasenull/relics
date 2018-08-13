@@ -1,0 +1,2 @@
+﻿on death of zombie:
+    drop 1 sugar at location of zombie
