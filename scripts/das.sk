@@ -1,0 +1,13 @@
+﻿on break cobble:
+	cancel event
+	if {kiriktas} is not equal to 200:
+		add 1 to {kiriktas}
+		message "&8[&eKırıktaş&8] &cKırılan &6 %{kiriktas}% &8/ &6200"
+	if {kiriktas} is equal to 200:
+		delete {kiriktas}
+		message "&8[&eKırıktaş&8] &c%player% &eKırıktaş &6ı kırdı" to all players
+		execute console command "/give %player% nether_star 640 name:&6Coin"
+	stop
+command /taşfix:
+	trigger:
+		delete {kiriktas}
