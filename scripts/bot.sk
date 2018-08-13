@@ -1,0 +1,18 @@
+﻿on join:
+	if {botkoruma.%player%} is true:
+		execute console command "kick %player% &bBOT KORUMA) &c10 Saniye içinde tekrar giriş yapın."
+		delete {botkoruma.%player%}
+		wait 10 seconds
+		set {botkoruma.%player%} to true
+on join:
+
+	set join message to "&8[&b+&8] &e%player%"
+
+	stop
+
+
+on quit:
+
+	set quit message to "&8[&c-&8] &e%player%"
+
+	stop
