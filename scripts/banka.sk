@@ -1,0 +1,47 @@
+command /banka <text> <number>:
+	trigger:
+		if arg-1 is "yatýr" or "yatir":
+			if player's balance is bigger than or equal to arg-2:
+				add arg-2 to {para.%player%}
+				execute console command "eco take %player% %arg-2%"
+				message "&bBANKA &6| &aBanka hesbýnýza &6%arg-2% &apara eklendi."
+			if player's balance is not bigger than or equal to arg-2:
+				message "&bBANKA &6| &cYetersiz bakiye."
+		if arg-1 is "þifre" or "þifredeðiþ" or "sifre" or "sifredegis":
+			if {sifre.%player%} is not set:
+				set {sifre.%player%} to arg-2
+				message "&bBANKA &6| &aÞifreniz &6%arg 2% &aoldu."
+			if {sifre.%player%} is set:
+				message "&bBANKA &6| &CZaten þifren var."
+		if arg-1 is "çek" or "cek" or "paraçek" or "paracek":
+			if arg-2 is not {sifre.%player%}:
+				if {onaylandi.%player%} is not set:
+					message "&bBANKA &6| &AÖncelikle &cþifre doðrulamasý &ayapman gerek."
+					message "&bBANKA &6| &ADoðrulamak için &6/banka paracek <þifre>"
+					message "&bBANKA &6| &4Eðer þifre ayarlamadýysanýz &6/banka sifre <þifre>"
+			if {onaylandi.%player%} is set:
+				if {para.%player%} is not bigger than or equal to arg-2:
+					message "&bBANKA &6: &BBANKA &ada yeterili paranýz bulunmamakta."
+				if {para.%player%} is bigger than or equal to arg-2:
+					execute console command "eco give %player% %arg-2%"
+					remove arg-2 from {para.%player%}
+			if arg-2 is {sifre.%player%}:
+				if {onaylandi.%player%} is not set:
+					message "&bBANKA &6| &APara çekme iþlemi onaylandý."
+					message "&bBANKA &6| &APara çekmek için &c10 Saniye içerisinde &6/banka paracek <miktar>"
+					set {onaylandi.%player%} to true
+					wait 10 seconds
+					delete {onaylandi.%player%}
+					message "&bBANKA &6| &aOnay süreniz bitmiþtir."
+					stop
+command /bankapara:
+	trigger:
+		message "&BBANKA &6| &aBakiyeniz &6%{para.%player%}%"
+command /bankafix <player>:
+	permission: bankafix.admin
+	trigger:
+		delete {onaylandi.%arg 1%}
+		delete {sifre.%arg 1%}
+		message "&bBANKA &6| &ABanka &6hesabýnýz fixlendi."
+on quit:
+	delete {onaylandi.%player%}
