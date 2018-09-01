@@ -1,0 +1,23 @@
+command /aklindansayitut:
+	trigger:
+		delete {aklimdansayittum}
+		delete {tuttugumsayi}
+		set {aklimdansayittum} to true
+		set {tuttugumsayi} to 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20
+		send player title "&aTuttuğum Sayı&e>" with subtitle "&eAklımdan sayı tuttum. &c1 &eile &c20 &earasında." for 3 seconds
+		wait 3 seconds
+		if {tuttugumsayi} is greater than 10:
+			send player title "&aTuttuğum Sayı&e>" with subtitle "&c10&edan büyük" for 5 seconds
+		if {tuttugumsayi} is not greater than 10:
+			send player title "&aTuttuğum Sayı&e>" with subtitle "&c10&edan küçük" for 5 seconds
+on chat:
+	set {soyledigi.%player%} to message
+	if message is "%{tuttugumsayi}%":
+		if {aklimdansayittum} is true:
+			send player title "&aTuttuğum Sayıyı bilen&e>" with subtitle "&c%player%" for 5 seconds
+			delete {aklimdansayittum}
+	else if message is not "%{tuttugumsayi}%":
+		if {soyledigi.%player%} is greater than {tuttugumsayi}:
+			message "&aTuttuğum Sayı&e> &cDaha Aşağı"
+		else if {soyledigi.%player%} is less than {tuttugumsayi}:
+			message "&aTuttuğum Sayı&e> &cDaha Yukarı"
