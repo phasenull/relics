@@ -1,0 +1,58 @@
+﻿command /gerisayim <number> -<text>- <text>:
+	permission: gerisay.admin
+	trigger:
+		if {sayimvar} is not set:
+			delete {sayimiptal}
+			set {sayimvar} to true
+			set {sayilicak} to arg-1
+			loop arg-1 times:
+				if {sayimiptal} is not set:
+					message "&a%arg 3% &ciçin kalan süre &a: &e%{sayilicak}%" to all players
+					message "&a%arg 3% &ciçin kalan süre &a: &e%{sayilicak}%" to console
+					remove 1 from {sayilicak}
+					wait 1 seconds
+				if {sayilicak} is not bigger than 0:
+					message "&a%arg 3% &ciçin geri sayim bitti" to all players
+					message "&a%arg 3% &ciçin geri sayim bitti" to console
+					execute console command "%arg 2%"
+					delete {sayilicak}
+			delete {sayimvar}
+		if {sayimvar} is set:
+			message "&4HATA: &cZaten sayım var."
+command /gerisayimbitir:
+	permission: gerisaydurdur.admin
+	trigger:
+		delete {sayilicak}
+		delete {sayimvar}
+		set {sayimiptal} to true
+command /gerisayimtitle <number> -<text>- <text>:
+	permission: gerisay.admin
+	trigger:
+		if {sayimvartitle} is not set:
+			delete {sayimiptal}
+			set {sayimvartitle} to true
+			set {sayilicaktitle} to arg-1
+			if arg-1 is greater than 300:
+				cancel event
+				message "&bGeri Sayım &e> &cMAX. &5300 &csaniye olabilir"
+			loop arg-1 times:
+				send player title "&aGeri Sayım %{sayilicaktitle}% &e>" with subtitle "%arg 3%" for 1 seconds
+				message "&aGeri Sayım &e> %arg 3%" to console
+				remove 1 from {sayilicaktitle}
+				wait 1 seconds
+				if {sayilicaktitle} is not bigger than 0:
+					send player title "&a%{sayilicaktitle}% Saniye &e>" with subtitle "%arg 3%" for 1 seconds
+					execute console command "%arg 1%"
+command /nicktitle:
+	trigger:
+		if {aciktitle.%player%} is true:
+			message "&eTitle Nick &a> &4Kapandı"
+			delete {aciktitle.%player%}
+		else if {aciktitle.%player%} is not set:
+			message "&eTitle Nick &a> &2Açıldı"
+			set {aciktitle.%player%} to true
+on chat:
+	if {aciktitle.%player%} is true:
+		if player is op:
+			cancel event
+			send player title "&c%player%&e>" with subtitle "&a%message%" for 3 seconds
