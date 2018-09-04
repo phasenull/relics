@@ -1,0 +1,166 @@
+command /bölgeeşya:
+	permission: bolgeesya.admin
+	trigger:
+		execute console command "give %player% blaze_rod 1 name:&cRemove"
+		execute console command "give %player% nether_star 1 name:&aAdd"
+		execute console command "give %player% paper 1 name:&eList"
+		message "&bBölge &e| &cEşyalr verildi"
+on chat:
+	set {chat.%player%} to message
+
+
+
+on rightclick with blaze rod:
+	if display name of tool is "&cRemove":
+		execute player command "/bölgesil %{chat.%player%}%"
+		message "&bBölge &e| &cChata son yazdığın neyse o adla işlem yapar"
+
+
+
+on rightclick with nether star:
+	if display name of tool is "&aAdd":
+		execute player command "/bölgeayarla %{chat.%player%}%"
+		message "&bBölge &e| &cChata son yazdığın neyse o adla işlem yapar"
+
+
+
+on rightclick with paper:
+	if display name of tool is "&eList":
+		execute player command "/bölgeliste"
+
+
+
+command /zarat:
+	trigger:
+		send all players title "&aZar&e>" with subtitle "&b&k00&f &ee &b&k00" for 3 seconds
+		loop 30 times:
+			play raw sound "note.pling" at all players with pitch 1 volume 10
+			wait 0.1 seconds
+		set {zar1} to 1 or 2 or 3 or 4 or 5 or 6
+		set {zar2} to 1 or 2 or 3 or 4 or 5 or 6
+		delete {toplam}
+		set {toplam} to {zar1} + {zar2}
+		if {zar1} is {zar2}:
+			send all players title "&aZar&e>" with subtitle "&4DOUBLE ! &b%{zar1}% &ee &b%{zar2}% &e= &c%{toplam}%" for 3 seconds
+			loop {toplam} times:
+				teleport player to block -2 east
+				wait 0.5 seconds
+			message "&aZar&e> &4DOUBLE &cgeldi tekrar atılmaya hazırlanıyor."
+			wait 1 seconds
+			message "&aZar&e> &4DOUBLE &cgeldi tekrar atılmaya hazırlanıyor.."
+			wait 1 seconds
+			message "&aZar&e> &4DOUBLE &cgeldi tekrar atılmaya hazırlanıyor..."
+			wait 1 seconds
+			message "&aZar&e> &4DOUBLE &cgeldi tekrar atılıyor..." to all players
+			execute player command "zarat"
+		else if {zar1} is not {zar2}:
+			send all players title "&aZar&e>" with subtitle "&b%{zar1}% &ee &b%{zar2}% &e= &c%{toplam}%" for 3 seconds
+			loop {toplam} times:
+				teleport player to block -2 east
+				wait 0.5 seconds
+		set {siradaki} to a random player out of all players
+		send player title "&cMonopoly&4>" with subtitle "&6Sıradaki: &f%{siradaki}%" for 2 seconds
+		
+command /bölgeayarla <text>:
+	permission: bolgeayarla.admin
+	trigger:
+		if {bolge.%arg-1%} is not set:
+			set {bolge.%arg-1%} to player's location
+			message "&bBölge &e| &cBölge &e%arg-1% &cayarlandı."
+			add arg-1 to {bolge::list::*}
+		else if {bolge.%arg-1%} is set:
+			message "&bBölge &e| &cZaten böyle bir bölge var. &e/bölgesil %arg-1% &cyazarak silebilirsin."
+command /bölgesil <text>:
+	permission: bolgesil.admin
+	trigger:
+		if {bolge.%arg-1%} is not set:
+			message "&bBölge &e| &cBölge &e%arg-1% &cbulunamadı. &e/bölgeliste"
+		else if {bolge.%arg-1%} is set:
+			remove arg-1 from {bolge::list::*}
+			delete {bolge.%arg-1%}
+			message "&bBölge &e| &cBölge &e%arg-1% &csilindi."
+command /bölgetp <text>:
+	permission: bolgetp.admin
+	usage: &c/bölgetp &e<oyuncu> <bölge>
+	trigger:
+		if {bolge.%arg-1%} is set:
+			teleport player to {bolge.%arg-1%}
+		if {bolge.%arg-1%} is not set:
+			message "&bBölge &e| &cBölge &e%arg-1% &cbulunamadı. &e/bölgeliste"
+command /bölgetpall <text>:
+	permission: bolgetp.admin
+	trigger:
+		if {bolge.%arg-1%} is set:
+			teleport all players to {bolge.%arg-1%}
+		if {bolge.%arg-1%} is not set:
+			message "&bBölge &e| &cBölge &e%arg-1% &cbulunamadı. &e/bölgeliste"
+command /bölgeliste:
+	permission: bolgeliste.admin
+	trigger:
+		message "&bBölge &e| %{bolge::list::*}%"
+command /fiyat <text> <number>:
+	trigger:
+		execute player command "hd addline %arg-1% &u%arg-2%"
+command /il <text> <number>:
+	trigger:
+		if arg-2 is 0:
+			execute player command "hd create %arg-1% &2%arg-1%"
+		if arg-2 is 1:
+			execute player command "hd create %arg-1% &a%arg-1%"
+		if arg-2 is 2:
+			execute player command "hd create %arg-1% &e%arg-1%"
+		if arg-2 is 3:
+			execute player command "hd create %arg-1% &6%arg-1%"
+		if arg-2 is 5:
+			execute player command "hd create %arg-1% &c%arg-1%"
+		if arg-2 is 6:
+			execute player command "hd create %arg-1% &4%arg-1%"
+		if arg-2 is 9999:
+			execute player command "hd create %arg-1% &u%arg-1%"
+command /buy <text> <number>:
+	trigger:
+		if {%arg-1%yi} is not set:
+			if player's balance is greater than or equal to arg-2:
+				send player title "&a%player%" with subtitle "&6%arg-1% &esatın aldı" for 3 seconds
+				set {%arg-1%.%player%} to "%player%"
+				set {%arg-1%yi} to true
+				execute console command "eco take %player% %arg-2%"
+			else if player's balance is less than or equal to arg-2:
+				message "&cMonopoly&4> &cYetersiz bakiye."
+		else if {%arg-1%yi} is set:
+			message "&cMonopoly&4> &6Burası zaten sahipli. &eSahibi: &c%{%arg-1%.%player%}%"
+command /start:
+	permission: startm.admin
+	trigger:
+		if {monopolybasladi} is not set:
+			set {monopolybasladi} to true
+			send all players title "&cMonopoly&4>" with subtitle "&63 &fSaniye içinde başlıyor" for 1 seconds
+			wait 1 seconds
+			send all players title "&cMonopoly&4>" with subtitle "&62 &fSaniye içinde başlıyor" for 1 seconds
+			wait 1 seconds
+			send all players title "&cMonopoly&4>" with subtitle "&61 &fSaniye içinde başlıyor" for 1 seconds
+			wait 1 seconds
+			set {siradaki} to a random player out of all players
+			send all players title "&cMonopoly&4>" with subtitle "&6Başladı. &eİlk %{siradaki}%" for 2 seconds
+			set {kalansure} to 600
+			execute console command "bölgetpall Baslangic"
+			loop 60 times:
+				message "&cMonopoly&4> &fBitişe &6%{kalansure}%" to all players
+				remove 10 from {kalansure}
+				wait 10 seconds
+command /fixm:
+	trigger:
+		delete {monopolybasladi}
+command /delete <text>:
+	trigger:
+		delete {%arg-1%}
+		message "&9{%arg-1%} &bsilindi."
+on any movement:
+	if {siradaki} is not "%player%":
+command /vergiver:
+	trigger:
+		if player's balance is greater than or equal to 200:
+			execute console command "eco take %player% 200"
+			message "&cMonopoly&4> &c%player% &evergisini verdi."
+		else if player's balance is less than or equal to 200:
+			send all players title "&cMonopoly&4>" with subtitle "&6%player% &ebattı." for 1 seconds
