@@ -1,0 +1,21 @@
+command /pet <text>
+	if arg-1 is not set:
+		if {petivar.%player%} is not set:
+			execute player command "pet al"
+			message "&6[&ePET&6] &cÖncelikle pet almalısın"
+		else if {petivar.%player%} is set:
+			execute player command "pet menu"
+	trigger:
+		if arg-1 is "al"
+			if {petivar.%player%} is not set
+				open chest with 2 row named "PET Al" to player
+				format slot 18 of player with egg named "&cNinja | &eCOST: $10000" to close then run [execute player command "/pet al ninja"]
+				format slot 1 of player with egg named "&cNOOB | &eCOST: $100" to close then run [execute player command "/pet al noob"]
+			else if {petivar.%player%} is true:
+				message "&6[&ePET&6] &cÖnce petini silmelisin. &a/pet sil"
+		else if arg-1 is "al noob"
+			if {petivar.%player%} is not set:
+				open chest with 2 row named "Noob Pet Al" to player
+				format slot 6 of player with diamond sword named "&5ATTACK: &e0.5"
+				format slot 3 of player with book named "&ECOST: $100 &A| &fSpeed: 10 &6Saniye"
+				format slot 14 of player with  named "&ECOST: $100 &A| &fSpeed: 10 &6Saniye"
