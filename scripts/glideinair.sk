@@ -1,0 +1,10 @@
+on sneak toggle:
+	wait 0.5 seconds
+	if {zatenbasmis.%player%} is true:
+		message "şu anda süzülüyorsun"
+		wait 10 seconds
+	else if {zatenbasmis.%player%} is not set:
+		loop 50 times:
+			push player 3 blocks forwards
+			wait 0.1 seconds
+		delete {zatenbasmis.%player%}
