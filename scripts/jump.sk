@@ -1,0 +1,13 @@
+on flight toggle:
+	player's gamemode is not creative:
+		cancel event
+		wait a tick
+		set player's flight state to false
+		push player upwards at speed 0.3
+		push player forwards at speed 0.9
+
+on jump:
+	player's gamemode is not creative:
+		{DoubleJump%player's uuid%} is not set:
+			block below player is not air or water or lava:
+				set player's flight state to true
