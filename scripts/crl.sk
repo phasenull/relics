@@ -1,0 +1,41 @@
+command /controlablerocketlauncher:
+	trigger:
+		set player's gamemode to survival
+		clear player's inventory
+		message "&6Inventory cleared"
+		wait 1 seconds
+		execute console command "replaceitem entity @p slot.armor.chest minecraft:elytra 1"
+		execute console command "replaceitem entity @p slot.weapon.offhand minecraft:fireworks 64"
+		message "&6Items replaced."
+		message "&c3"
+		wait 1 seconds
+		message "&c2"
+		wait 1 seconds
+		message "&c1"
+		wait 1 seconds
+		message "&3CRL &cis coming ..." to all players
+		set {was.%player%} to player's location
+		push player 50 blocks upwards
+		wait 10 seconds
+		message "&410 Seconds !" to all players
+		wait 5 seconds
+		message "&45 Seconds !" to all players
+		wait 1 seconds
+		message "&44 Seconds !" to all players
+		wait 1 seconds
+		message "&43 Seconds !" to all players
+		wait 1 seconds
+		message "&42 Seconds !" to all players
+		wait 1 seconds
+		message "&41 Seconds !" to all players
+		wait 1 seconds
+		set {is.%player%} to  player's location
+		message "&3Location saved"
+		clear player's inventory
+		teleport player to {was.%player%}
+		wait 1 seconds
+		loop 200 times:
+			spawn a primed tnt at {is.%player%}
+			wait 0.1 seconds
+on weather change to rain or thunder:
+	cancel event
