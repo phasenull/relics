@@ -1,0 +1,55 @@
+on join:
+	wait 1 seconds
+	if {registered.%player%} is set:
+		message "&6Lütfen koyduğun &cşifreyi &6gir. Unuttuysan yetkiliye bildir."
+	else if {registered.%player%} is not set:
+		message "&6Chata bir şifre yaz, &4Yazdığın şey şifren olacak. &cEğer yanlış yazdıysan &6bir yetkiliden düzeltmesini iste."
+		set {first.%player%} to true
+		set {errorcode.%player%} to "400"
+		set {error.%player%} to "&cHata Ayrıntısı &3(%{errorcode.%player%}%)&c: &6İlk giriş hatası. (Tekrar giriş önerilir)"
+		message "&cEyvah ! &3%{errorcode.%player%}% &6numaralı hatayı yaşadınız."
+		wait 1 seconds
+		message "&cHata &eraporlanıyor"
+		wait 2 seconds
+		message "&c%{error.%player%}%"
+		set {registered.%player%} to true
+	if player's name is "xXxIAsdasIxXx" or "Myoda5234" or "eymo4141" or "tokeop" or "ImmortalWolfTR" or "Lexie":
+		wait 30 seconds
+		if {logined.%player%} is not set:
+			kick player
+	else:
+		kick player
+on any movement:
+	if {logined.%player%} is not set:
+		cancel event
+on command:
+	if command sender is player:
+		if {logined.%player%} is not set:
+			cancel event
+on chat:
+	if {first.%player%} is not set:
+		if {logined.%player%} is not set:
+			cancel event
+			if message is {pass.%player%}:
+				set {logined.%player%} to true
+				message "&6Hoşgeldin &3%player% &6! Bizde seni bekliyorduk."
+			else if message is not {pass.%player%}:
+				set {errorcode.%player%} to 401
+				set {error.%player%} to "&cHata Ayrıntısı &3(%{errorcode.%player%}%)&c: &6Bilinmeyen / Yanlış"
+				message "&cEyvah ! &3%{errorcode.%player%}% &6numaralı hatayı yaşadınız."
+				wait 1 seconds
+				message "&cHata &eraporlanıyor"
+				wait 2 seconds
+				message "&c%{error.%player%}%"
+	else if {first.%player%} is set:
+		set {pass.%player%} to message
+		delete {first.%player%}
+		set {logined.%player%} to true
+		message "&6Şifren &b%{pass.%player%}%"
+		cancel event
+	if {logined.%player%} is not set:
+		cancel event
+on quit:
+	delete {logined.%player%}
+on leave:
+	delete {logined.%player%}
