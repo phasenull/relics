@@ -1,0 +1,64 @@
+on rightclick with stick:
+	if {oyunbasladi} is true:
+	if {elendii.%player%} is not set:
+		if {%player%.vehicle} is set:
+			kill {%player%.vehicle}
+			delete {%player%.vehicle}
+			stop
+		wait 1 tick
+		push player upwards at speed 0.7
+		wait 0.4 seconds
+		spawn 1 armor stand at player's location
+		set {%player%.vehicle} to last spawned entity
+		apply potion of invisibility of tier 3 to {%player%.vehicle} for 10 seconds
+		wait 0.1 seconds
+		execute console command "replaceitem entity %{%player%.vehicle}% slot.armor.head brick_block"
+	else if {elendii.%player%} is set:
+on sneak toggle:
+	if {%player%.vehicle} is set:
+		push player upwards at speed 0.3
+		wait 0.5 seconds
+		kill {%player%.vehicle}
+		delete {%player%.vehicle}
+on any movement:
+	if {oyunbasladi} is true:
+		if {elendii.%player%} is not set:
+			if {%player%.vehicle} is set:
+				teleport {%player%.vehicle} to player
+				execute console command "effect %player% clear"
+				apply potion of invisibility of tier 1 to player for 0.2 seconds
+				apply potion of speed of tier 1 to player for 0.2 seconds
+				set {underblock.%player%} to block Below player
+				if {underblock.%player%} is grass:
+					push player forwards at speed 0.1
+				set {%player%.loc} to player's location
+				wait 1 seconds
+				if {elendii.%player%} is true:
+					teleport player to {tronlobi}
+					set {elenmesebebi.%player%} to "&cKendi &6ışığına çarptı"
+					message "&3%player% %{elenmesebebi.%player%}% ve elendi." to all players
+				else if player's location is {%player%.loc}:
+					set {elendii.%player%} to true
+on every 10 second in "world":
+	if {oyunbasladi} is true:
+		if {kalansure} is less than 1:
+			delete {oyunbasladi}
+			message "&c&l&oOyun Bitti !" to all players
+			stop
+		message "&6Kalan Süre: %{kalansure}%" to all players
+		remove 10 from {kalansure}
+command /fixtron <player>:
+	trigger:
+		delete {elendii.%arg-1%}
+		set {kalansure} to 60
+command /bilgilendir <text>:
+	trigger:
+		message "%{%arg-1%}%"
+command /tronlobi:
+	trigger:
+		set {tronlobi} to player's location
+command /tronbaslasin:
+	trigger:
+		set {oyunbasladi} to true
+		loop all players:
+			delete {elendii.%player%}
