@@ -1,0 +1,26 @@
+command /animated <text>:
+	trigger:
+		if arg-1 is "spawn":
+			if {havalandirma} is set:
+				kill {havalandirma}
+				delete {havalandirma}
+				add "{NoGravity:1b,Invisible:1,NoBasePlate:1}" to nbt of last spawned entity
+			if {havalandirma} is not set:
+				spawn 1 armor stand at player's location
+				set {havalandirma} to last spawned entity
+				loop 100 times:
+					if {havalandirma} is set:
+						execute console command "replaceitem entity @e[type=armor_stand] slot.armor.head minecraft:iron_ore"
+						wait 0.25 second
+						execute console command "replaceitem entity @e[type=armor_stand] slot.armor.head minecraft:iron_block"
+						wait 0.25 second
+						execute console command "replaceitem entity @e[type=armor_stand] slot.armor.head minecraft:gold_ore"
+						wait 0.25 second
+						execute console command "replaceitem entity @e[type=armor_stand] slot.armor.head minecraft:gold_block"
+						wait 0.25 second
+		if arg-1 is "kill":
+			if {havalandirma} is set:
+				kill {havalandirma}
+				delete {havalandirma}
+		if arg-1 is "<number>":
+			set {havalandirma.za} to arg-1
