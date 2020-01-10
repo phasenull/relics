@@ -1,0 +1,11 @@
+command /car:
+	permission: spawn.a.car
+	trigger:
+		spawn armor stand at player's location
+		set {%player%.car} to last spawned entity
+		set player's vehicle to {%player%.car}
+on rightclick on armor stand:
+	if entity is {%player%.car}:
+		set player's vehicle to {%player%.car}
+on rightclick:
+	if player's vehicle is {%player%.car}:
