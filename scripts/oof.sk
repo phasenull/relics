@@ -1,0 +1,6 @@
+command /F_:
+	permission: op
+	trigger:
+		broadcast "&c&lOk Bro !"
+		wait 3 seconds
+		execute console command "stop"
