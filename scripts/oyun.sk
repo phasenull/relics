@@ -1,0 +1,150 @@
+on rightclick on sign:
+	if line 1 of clicked block is "Oyun":
+		set {baslayacakoyun.%player%} to line 3 of clicked block
+		execute player command "oyun.oyna %line 3 of clicked block%"
+	else if line 3 of clicked block is "Lobi":
+		execute player command "oyun.oyna %line 3 of clicked block%"
+on leftclick on sign:
+	if line 1 of clicked block is "Oyun":
+		set {baslayacakoyun.%player%} to line 3 of clicked block
+		execute player command "oyun.oyna %line 3 of clicked block%"
+	else if line 3 of clicked block is "Lobi":
+		execute player command "oyun.oyna %line 3 of clicked block%"
+command /oyun.ekle <text>:
+	trigger:
+		if {%arg-1%} is not set:
+			set {%arg 1%} to player's location
+			message "&c%arg-1% &e adlı oyun &3%{%arg 1%}% &ekonumuna eklendi."
+		else if {%arg 1%} is set:
+			message "&4HATA: &cOyun zaten var !"
+command /oyun.sil <text>:
+	trigger:
+		if {%arg 1%} is set:
+			delete {%arg-1%}
+			message "&c%arg-1% &eadlı oyun başarıyla silindi."
+		else if {%arg-1%} is not set:
+			message "&4HATA: &cOyun bulunamadı"
+command /oyun.oyna <text>:
+	trigger:
+		if {%arg-1%} is set:
+			set {girilen.oyun.%player%} to arg-1
+			
+			if arg-1 is not "Lobi":
+				message "&b%{girilen.oyun.%player%}% &eBaşladı !"
+				delete {girilen.oyun.%player%}
+				teleport player to {%arg-1%}
+			else if arg-1 is "Lobi":
+				if {isinlaniyor.%player%} is not set:
+					set {isinlaniyor.%player%} to true
+					message "&2Lobiye &bdönülüyor..."
+					play sound "block.note.pling" with volume 100 and pitch 1 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.05 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.1 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.15 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.20 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.25 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.30 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.35 at player for player
+					wait 0.25 seconds
+					play sound "block.note.pling" with volume 100 and pitch 1.40 at player for player
+					wait 0.5					seconds
+					play sound "entity.generic.explode" with volume 500 and pitch 1 at player for player
+					teleport player to {%arg-1%}
+					delete {isinlaniyor.%player%}
+				else if {isinlaniyor.%player%} is true:
+					message "&4HATA: &cZaten ışınlanıyorsun !"
+		else if {%arg-1%} is not set:
+			message "&4HATA: &CBöyle bir oyun bulunamadı !"
+command /oyun.tabela <text>:
+	trigger:
+		if {%arg-1%} is set:
+			give player sign
+			set {placingsign.%player%} to true
+			set {placinggame.%player%} to arg-1
+		else if {%arg-1%} is not set:
+			message "&4HATA: &cBöyle bir oyun bulunamadı !"
+on leftclick on a sign:
+	if {placingsign.%player%} is true:
+		cancel event
+		if {placinggame.%player%} is not "Lobi":
+			set line 1 of clicked block to "Oyun"
+		else if {placinggame.%player%} is "Lobi":
+			set line 1 of clicked block to "Geri dön:"
+		set line 3 of clicked block to "%{placinggame.%player%}%"
+		delete {placingsign.%player%}
+
+command /ışık:
+	trigger:
+		if {isik.%player%} is not set:
+			message "&eIşık &2açıldı"
+			play sound "block.note.pling" with volume 100 and pitch 2 at player for player
+			set {isik.%player%} to true
+			apply potion of night vision of tier 2 to player for 9999 seconds
+		else if {isik.%player%} is set:
+			play sound "block.note.pling" with volume 100 and pitch -1 at player for player
+			message "&eIşık &4kapandı"
+			delete {isik.%player%}
+			remove night vision from player
+on rightclick on a entity:	
+	if player is not sneaking:
+		set player's vehicle to target
+command /zorlakafanabindir <player> <player>:
+	permission: op
+	trigger:
+		if {zorlakafanabindir.%arg-1%} is true:
+			delete {zorlakafanabindir.%arg-1%}
+			message "-" to player
+		else if {zorlakafanabindir.%arg-1%} is not true:
+			set arg-1's vehicle to arg-2
+			set {zorlakafanabindir.%arg-1%} to true
+			message "+" to player
+			
+on toggle sneak:
+	if {zorlakafanabindir.%player%} is true:
+		cancel event
+		message "İnmemeye zorlandınız ! Bir MODERATOR'den açmasını isteyin."
+command /sabah:
+	permission: op
+	trigger:
+		execute console command "time set 2000"
+command /gece:
+	permission: op
+	trigger:
+		execute console command "time set 15000"
+		
+on rightclick on sign:
+	if line 1 of clicked block is "TIKLA":
+		if {slowdownaktif.%player%} is set:
+			message "&4HATA: &c5 Saniyede en fazla &e%line 4 of clicked block% &2%line 2 of clicked block% &calabilirsin"
+		else if {slowdownaktif.%player%} is not set:
+			execute console command "give %player% minecraft:%line 3 of clicked block% %line 4 of clicked block%"
+			set {slowdownaktif.%player%} to true
+			wait 5 seconds
+			delete {slowdownaktif.%player%}
+command /delete <text>:
+	permission: op
+	trigger:
+		if {%arg-1%} is set:
+			delete {%arg-1%}
+			message "{%arg-1%} silindi"
+		else if {%arg-1%} is not set:
+			message "Zaten yok"
+command /ne <text>:
+	trigger:
+		message "%{%arg-1%}%" to player
+command /lobi:
+	trigger:
+		execute player command "oyun.oyna Lobi"
+on vehicle exit:
+	if player's vehicle is minecart:
+		cancel event
+	else if player's vehicle is player:
+		if {zorlakafanabindir.%player%} is set:
+			cancel event
