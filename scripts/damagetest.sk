@@ -1,0 +1,41 @@
+on death:
+	if victim is a zombie:
+		if attacker is a entity:
+			if {totalkills} is not set:
+				set {totalkills} to 0
+			
+			drop 1 diamond at attacker's position
+			add 1 to {totalkills}
+			message "&b&l %{totalkills}% &c&lTOTAL KILL: &6%victim's type%" to all players
+on region enter:
+	message "Entering %region%"
+	wait 0.1 seconds
+	if {region-list::*} contains "%region at player%":
+		send player title "&6Tehlikeli Alana Girildi:" with subtitle "%region at player%" for 2 seconds
+		apply Blindness to player for 9999 days
+		
+on region leave:
+	message "Leaving %region%."
+	if {region-list::*} contains "%region at player%":
+		remove Blindness from player
+				
+command /regionlist <text>:
+	aliases: /rgl
+	usage: /rgl <add/remove/clear/list>
+	trigger:
+		if "%arg 1%" is "add":
+			add "%region at player%" to {region-list::*}
+			send "&6Added region &c%region at player% &6 to regionlist." to player
+		else if "%arg 1%" is "remove":
+			remove "%region at player%" from {region-list::*}
+			send "&6Removed region &c%region at player% &6 from regionlist." to player
+		else if "%arg 1%" is "list":
+			send "&6List contains:" to player
+			loop {region-list::*}:
+				send "&6&l- &b%loop-value%" to player
+		else if "%arg 1%" is "reload":
+			execute player command "/sk reload damagetest"
+		else if "%arg 1%" is "clear":
+			loop {region-list::*}:
+				send "&cRemoved &b%loop-value% &6from list!" to player
+				remove "%loop-value%" from {region-list::*}
