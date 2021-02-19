@@ -1,0 +1,7 @@
+command /ping [<player>]:
+	aliases: /p
+	trigger:
+		if arg 1 is not set:
+			send "&ePing &6» &a%player's ping%"
+		else:
+			send "&ePing &6» &a%player-arg's ping%"
